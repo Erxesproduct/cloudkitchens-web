@@ -82,3 +82,18 @@ Website (done):
 
 **Important for a lunch service:** the invoice must be paid quickly, or the order misses the 12:00 cut-off. Decide
 in erxes how long an unpaid order stays open (for example until 12:00 of its day).
+
+## 1.3 eBarimt setup
+
+Zochil had no eBarimt setting (VAT disabled on all products).
+
+1. Collect from Cloud Kitchens: the company TIN, district code, VAT status and the product classification code for
+   prepared meals.
+2. Register for **PosAPI 3.0** (ebarimt.mn → Business → PosAPI) and install the PosAPI service.
+3. **Settings → eBarimt → Add**: enter the PosAPI URL, TIN, district code and VAT switches, then assign it to the
+   website pipeline.
+
+Website (done):
+
+- Checkout asks for «Хувь хүн» or «Байгууллага». Many orders come from offices, so «Байгууллага» with the
+  7-digit registry number is easy to reach; the server validates it.
