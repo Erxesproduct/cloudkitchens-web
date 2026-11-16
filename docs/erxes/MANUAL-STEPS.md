@@ -97,3 +97,42 @@ Website (done):
 
 - Checkout asks for «Хувь хүн» or «Байгууллага». Many orders come from offices, so «Байгууллага» with the
   7-digit registry number is easy to reach; the server validates it.
+
+## 1.4 Delivery zones, fees and order statuses
+
+**Website (done)**, taken from the Zochil shop description, delivery rule and terms:
+
+- **Zone:** hyper-localized, only the **27 buildings** listed on Zochil (Blue Sky Hotel & Tower, ICC Tower,
+  AYUD Tower, MERU Tower, The Downtown Building, MINISTER Tower, Centrum Office, Shangri-La Office, CENTRAL Tower,
+  Grand Office, MONNIS Tower, MONKON building, Хаан Даатгал байр, Гурван Гол Оффис, Гурван Гал Оффис,
+  Park View Residence, UB Mart, New Horizons Office, MN Central Office, BCI Printing, VIVA Office, Ариг төв,
+  Marco Polo Plaza, Чандмань төв, Mongolian Central Business Square, Central Park, Eco Tower). Checkout makes the
+  customer pick one, plus floor / office / company; the server rejects any other building.
+- **Cut-off:** a day's dish can be ordered until **12:00** that day (Ulaanbaatar time), and the later days of the
+  week in advance, as on Zochil. The server enforces it too.
+- **Windows:** ordered before 11:30 → **11:30–12:30**; 11:30–12:00 → **12:30–13:00**. Shown per dish in the cart,
+  on the receipt and in the order text sent to erxes.
+- **Fee:** Zochil had no delivery option or fee, so the website charges none.
+- Rules are in `src/content/business.ts`; the building list is `docs/erxes/cloudkitchens-buildings.csv`.
+
+**Confirm with Cloud Kitchens:**
+
+- The Zochil delivery rule ends with «Eco Tower / ...»: are there more buildings?
+- Is delivery really free? Is there a minimum order?
+- Pick-up from the kitchen (Чойжин Сүйтс, 1F): allowed? Not offered on Zochil, so not on the website.
+- Should the 11:30 / 12:00 times be enforced the same for pre-orders of later days (the website gives pre-orders
+  the first window)?
+
+**erxes (manual):**
+
+1. **Sales → Boards → «Өдрийн хоол» → pipeline «Вэбсайт»**, with stages in order:
+   1. Шинэ захиалга
+   2. Төлбөр хүлээгдэж буй
+   3. Төлбөр баталгаажсан
+   4. Бэлтгэж байна
+   5. Хүргэлтэд гарсан
+   6. Хүргэгдсэн
+
+   Add «Цуцлагдсан» as well. Group or filter the cards by delivery date: the date and window are in each line of
+   the order text.
+2. **Frontline → Forms → (order form) → Settings**: create a sales card in «Шинэ захиалга» for every submission.
