@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+/*
+ * Cloud Kitchens DOWNTOWN: the cobalt cloud of the logo on a clear sky, the tomato red of the delivery pin on their
+ * banner for anything time-critical, and the yellow rim of the soup bowls on the menu photos.
+ */
+@theme {
+  --color-sky: #eef5ff;
+  --color-sky-2: #dbe9ff;
+  --color-cloud: #ffffff;
+  --color-cobalt: #0b4fc0;
+  --color-cobalt-deep: #083a8f;
+  --color-tomato: #e8364a;
+  --color-tomato-deep: #c4233a;
+  --color-yolk: #ffcd2e;
+  --color-leaf: #2f9e5b;
+  --color-ink: #10203d;
+  --color-ink-2: #43506a;
+  --color-mute: #7a8499;
+  --color-line: #dde4f0;
+
+  --font-display: var(--font-comfortaa), system-ui, sans-serif;
+  --font-sans: var(--font-nunito), system-ui, sans-serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-sky);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-cobalt);
+  color: #fff;
+}
+
+.display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* soft clouds drawn with three circles each, for hero and section backgrounds */
+.clouds {
+  background-image:
+    radial-gradient(circle at 12% 30%, #fff 0 46px, transparent 47px),
+    radial-gradient(circle at 16.5% 22%, #fff 0 60px, transparent 61px),
+    radial-gradient(circle at 21% 31%, #fff 0 42px, transparent 43px),
+    radial-gradient(circle at 78% 72%, #fff 0 38px, transparent 39px),
+    radial-gradient(circle at 82% 64%, #fff 0 52px, transparent 53px),
+    radial-gradient(circle at 86.5% 73%, #fff 0 36px, transparent 37px);
+}
+
+/* a plate: the dish photo cut round with a white rim and a soft shadow */
+.plate {
+  border-radius: 9999px;
+  box-shadow:
+    0 0 0 10px #fff,
+    0 24px 50px -14px rgb(16 32 61 / 0.35);
+}
+
+/* the yellow rim of the soup bowl on the menu photos */
+.bowl {
+  border-radius: 9999px;
+  box-shadow:
+    0 0 0 6px var(--color-yolk),
+    0 0 0 10px #fff,
+    0 14px 30px -10px rgb(16 32 61 / 0.35);
+}
+
+/* the dashed tear line of a lunch ticket */
+.tear {
+  background-image: radial-gradient(circle, var(--color-line) 1.5px, transparent 2px);
+  background-size: 10px 4px;
+  background-repeat: repeat-x;
+  height: 4px;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.rise {
+  animation: rise 0.35s ease-out both;
+}
+
+@keyframes steam {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scaleX(0.9);
+  }
+  40% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-22px) scaleX(1.1);
+  }
+}
+.steam {
+  animation: steam 3.2s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spin-slow 60s linear infinite;
+}
+
+@keyframes pulse-dot {
+  50% {
+    opacity: 0.35;
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise,
+  .steam,
+  .spin-slow,
+  .pulse-dot {
+    animation: none;
+  }
+}

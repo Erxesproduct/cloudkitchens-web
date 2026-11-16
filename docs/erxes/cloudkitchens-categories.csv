@@ -1,0 +1,8 @@
+code,name,parentCode
+CK,Cloud Kitchens DOWNTOWN,
+CK-lunch,Өдрийн хоол / Lunch,CK
+CK-lunch-mon,Даваа / Monday,CK-lunch
+CK-lunch-tue,Мягмар / Tuesday,CK-lunch
+CK-lunch-wed,Лхагва / Wednesday,CK-lunch
+CK-lunch-thu,Пүрэв / Thursday,CK-lunch
+CK-lunch-fri,Баасан / Friday,CK-lunch
