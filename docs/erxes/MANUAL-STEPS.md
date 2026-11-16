@@ -63,3 +63,22 @@ Steps:
   `catalog.json`?
 - The Friday soup «Өндөг помидортой шөл» has no English name on Zochil.
 - Monday's main and set share Zochil SKU `D019`; erxes uses the `CK-<id>` codes instead.
+
+## 1.2 Payment setup (QPay)
+
+On Zochil the only payment method was **QPay** (provider qpay2) through Zochil's merchant. Payment rule:
+«100% төлбөрөө төлж байж таны захиалга баталгаажна.»
+
+1. Get Cloud Kitchens' own QPay merchant credentials: `client_id`, `client_secret` and `invoice_code`.
+   Owner: Terbish / Cloud Kitchens.
+2. **Settings → Payments → Add → QPay**: enter the credentials.
+3. **Settings → Payments → (QPay) → Test**: create a 100₮ test invoice.
+4. **Sales → Pipelines → «Вэбсайт» → Settings → Payments**: select QPay.
+
+Website (done):
+
+- Checkout shows QPay and the 100% prepayment rule.
+- The order text sent to erxes says «QPay (100% урьдчилж)».
+
+**Important for a lunch service:** the invoice must be paid quickly, or the order misses the 12:00 cut-off. Decide
+in erxes how long an unpaid order stays open (for example until 12:00 of its day).
