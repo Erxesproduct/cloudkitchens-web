@@ -136,3 +136,30 @@ Website (done):
    Add «Цуцлагдсан» as well. Group or filter the cards by delivery date: the date and window are in each line of
    the order text.
 2. **Frontline → Forms → (order form) → Settings**: create a sales card in «Шинэ захиалга» for every submission.
+
+## 1.5 Test order from cart to receipt
+
+**Already verified on a local production build** (2026-11-16, 19:55 Ulaanbaatar time):
+
+- `npm run test:order -- http://localhost:3377` passes 15 cases:
+  - empty cart, unknown dish, sold-out dish, a day after its 12:00 cut-off (Monday), quantity over 20;
+  - order total with no delivery fee;
+  - building outside the list, missing building, missing floor/office;
+  - unknown payment, company registry rejected and accepted, phone (incl. +976), email, honeypot.
+- A browser check of the cart with Tuesday ×2 and a Thursday set: windows 11:30–12:30, total 58,700₮.
+- Without erxes, the order returns `503 not_configured` and the checkout shows the phone number with a reference
+  code (`CK-YYMMDD-XXXX`).
+
+Steps for a real test order:
+
+1. **Frontline → Forms → Create** «Вэбсайт захиалга» with fields Нэр, Утас, Имэйл, Захиалга. Copy the form id and the
+   field ids.
+2. In Vercel, set `ERXES_API_URL`, `ERXES_ORDER_FORM_ID` and `ERXES_ORDER_FIELD_IDS`, then redeploy.
+3. On a menu day, run `npm run test:order -- https://<production url> --send`. The script prints the expected total
+   (2 × the first open dish + the next one; no delivery fee).
+4. In erxes:
+   1. Find the submission and its card.
+   2. Send the QPay invoice and pay it.
+   3. Issue the eBarimt.
+   4. Move the card through the stages to «Хүргэгдсэн».
+   5. Void the test order.
